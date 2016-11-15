@@ -1,36 +1,38 @@
 var mysql = require('mysql2');
 
-//create connection 
+
+//create connection instance
 var connection = mysql.createConnection({
-  host:'localhost',
-  user:'administrator',
-  password: 'admin',
-  database: 'newsdb'
+    host: 'localhost',
+    user: 'administrator',
+    password: 'admin',
+    database: 'newsdb'
 });
 
-// open connection
-connection.connect(function(err){
-    if(err){
-        console.log(err);
-        return;
+module.exports = {
+    connectToServer: function () {
+        console.log("Attemp to connect");
+        connection.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return;
+            } else {
+                console.log("Connection Established");
+            }
+        }); 
+    },
+    disconnectFromServer: function () {
+        connection.end(function (err) {
+            if (err) {
+                console.log(err);
+                return;
+            } else {
+                console.log("Disconnected");
+            }
+        });
+    },
+    getConnectionInstance: function(){
+        return connection;
     }
-    else{
-        console.log("Connection Established");
-    }
-});
-
-connection.end(function(err){
-        if(err){
-            console.log(err);
-            return;
-        }
-        else{
-            console.log("Disconnected");
-        }
-    });
-
-    /*
-module.exports = connection;
-*/
-exports.connection = connection;
+};
 

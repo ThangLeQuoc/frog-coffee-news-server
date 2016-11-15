@@ -1,22 +1,26 @@
 var SQLconnection = require('./mysql-connector');
 var mysql = require('mysql2');
-
+var db;
 module.exports = {
-  
-  getArticle : function(){
-    console.log('Attempt to get articles');
-    console.log(SQLconnection.connection);
-    
-    
-    
-    SQLconnection.connection.end(function(err){
-        if(err){
-            console.log(err);
-            return;
-        }
-        else{
-            console.log("Disconnected from thang o sau");
-        }
-    });
-  }
+    //
+    getCategoryList: function(callback){
+        SQLconnection.connectToServer();
+        db = SQLconnection.getConnectionInstance();
+        db.query('SELECT * FROM category', function(err,rows){
+            if(err) throw err;
+            //return rows
+            return callback(null,rows);
+        });
+    },
+    // get Article
+    getArticle: function (callback) {
+        SQLconnection.connectToServer();
+        db = SQLconnection.getConnectionInstance();
+        db.query('SELECT * FROM article', function (err, rows) {
+            if (err) throw err;
+            //return rows;
+            return callback(null,rows);
+        });
+        //
+    }
 }
