@@ -14,6 +14,8 @@
 
 | URI | RESTful Method | Description | Example |
 | --- | --- | --- | --- |
+| /api/users | get | List all users | --- |
+| /api/users/role: | get | List all users of specified role | /api/users/collaborator |
 | /api/articles | get | List all articles | --- |
 | /api/taglist | get | List all tags | --- |
 | /api/apisource | get | List all API News Source | --- |
