@@ -11,6 +11,8 @@ router.get('/users', function (req, res) {
 });
 
 
+
+
 /* Begin article query */
 router.get('/articles', function (req, res) {
     SQLquery.getArticle(function (err, data) {
@@ -46,6 +48,9 @@ router.get('/category', function (req, res) {
         else
             res.status(200).send(data);
     })
+});
+router.get('/:category/taglist',function(req,res){
+    
 });
 
 router.get('/apisource', function (req, res) {

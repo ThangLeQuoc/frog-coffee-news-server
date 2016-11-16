@@ -29,6 +29,11 @@ module.exports = {
             return callback(null,rows);
         });
     },
+    getCategoryTagList: function(category, callback){
+        SQLconnection.connectToServer();
+        db = SQLconnection.getConnectionInstance();
+        db.query('SELECT * FROM category, categorylist WHERE category. ')
+    },
 
 
 
