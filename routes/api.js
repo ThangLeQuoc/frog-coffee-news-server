@@ -10,7 +10,14 @@ router.get('/users', function (req, res) {
     });
 });
 
-
+router.get('/users/:role', function (req, res) {
+    let role = req.params.role;
+    SQLquery.getUserAccountByRole(role, function (err, data) {
+        if (err) throw err;
+        else
+            res.status(200).send(data);
+    });
+});
 
 
 /* Begin article query */
@@ -41,6 +48,14 @@ router.get('/articles/:category/:keyword', function (req, res) {
     }
 })
 
+router.get('/figure/:articleid',function(req,res){
+    let articleID = req.params.articleid;
+    SQLquery.getArticleFigures(articleID,function(err,data){
+        if(err) return err;
+        else
+            res.status(200).send(data);
+    })
+})
 
 router.get('/category', function (req, res) {
     SQLquery.getCategoryList(function (err, data) {
@@ -49,9 +64,9 @@ router.get('/category', function (req, res) {
             res.status(200).send(data);
     })
 });
-router.get('/taglist',function(req,res){
-    SQLquery.getTagList(function(err,data){
-        if(err) return;
+router.get('/taglist', function (req, res) {
+    SQLquery.getTagList(function (err, data) {
+        if (err) return;
         else
             res.status(200).send(data);
     });

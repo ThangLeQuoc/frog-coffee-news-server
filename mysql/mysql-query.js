@@ -11,6 +11,15 @@ module.exports = {
             return callback(null,rows);
         });
     },
+    getUserAccountByRole: function(role,callback){
+        SQLconnection.connectToServer();
+        db = SQLconnection.getConnectionInstance();
+        db.query('SELECT * FROM useraccount, role WHERE useraccount.role = role.idRole AND role.roleName = ?',
+            [role],function(err,rows){
+                if(err) throw err;
+                return callback(null,rows);
+        })
+    },
 
     getAPISource:function(callback){
         SQLconnection.connectToServer();
@@ -58,6 +67,16 @@ module.exports = {
                 [category],function(err,rows){
                     if(err) throw err;
                     //return rows
+                    return callback(null,rows);
+                });
+    },
+
+    getArticleFigures: function(articleId, callback){
+        SQLconnection.connectToServer();
+        db = SQLconnection.getConnectionInstance();
+        db.query('SELECT * FROM articlefigure WHERE articlefigure.idArticle = ?',
+                [articleId],function(err,rows){
+                    if(err) throw err;
                     return callback(null,rows);
                 });
     }
