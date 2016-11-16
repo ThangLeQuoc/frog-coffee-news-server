@@ -49,8 +49,12 @@ router.get('/category', function (req, res) {
             res.status(200).send(data);
     })
 });
-router.get('/:category/taglist',function(req,res){
-    
+router.get('/taglist',function(req,res){
+    SQLquery.getTagList(function(err,data){
+        if(err) return;
+        else
+            res.status(200).send(data);
+    });
 });
 
 router.get('/apisource', function (req, res) {

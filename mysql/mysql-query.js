@@ -29,10 +29,13 @@ module.exports = {
             return callback(null,rows);
         });
     },
-    getCategoryTagList: function(category, callback){
+    getTagList: function(callback){
         SQLconnection.connectToServer();
         db = SQLconnection.getConnectionInstance();
-        db.query('SELECT * FROM category, categorylist WHERE category. ')
+        db.query('SELECT * FROM tag', function(err,rows){
+            if(err) throw err;
+            return callback(null,rows);
+        });
     },
 
 
