@@ -11,13 +11,10 @@ var connection = mysql.createConnection({
 
 module.exports = {
     connectToServer: function () {
-        console.log("Attemp to connect");
         connection.connect(function (err) {
             if (err) {
                 console.log(err);
                 return;
-            } else {
-                console.log("Connection Established");
             }
         }); 
     },
@@ -26,8 +23,6 @@ module.exports = {
             if (err) {
                 console.log(err);
                 return;
-            } else {
-                console.log("Disconnected");
             }
         });
     },
